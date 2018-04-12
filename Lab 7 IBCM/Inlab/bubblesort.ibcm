@@ -1,0 +1,81 @@
+C00F 000	jmp 	start 	skip around the variables
+0000 001 i 	dw 	0 	int i
+0000 002 j 	dw 	0 	int j
+004C 003 a 	dw 	0 	int a[]
+0005 004 n 	dw 	0	size
+0000 005 zero 	dw 	0
+0001 006 one 	dw 	1
+0000 007 curr 	dw
+0000 008 prev 	dw
+3000 009 ldit 	dw	3000	to load element
+4000 00A sdit 	dw 	4000 	to store element
+0000 00B
+0000 00C
+0000 00D
+0000 00E
+3004 00F start	load	n
+6006 010 	sub	1
+4002 011 	store 	j
+3004 012 loop	load	n
+6001 013 	sub 	i
+E04B 014	jumpl 	exit
+D04B 015 	jumpe 	exit
+3002 016 loop2	load 	j
+6001 017 	sub 	i
+E047 018		jumpl 	go to increment i 
+D047 019		jumpe	go to increment i
+3009 01A 	load 	ldit   	load a[j]
+5003 01B 	add 	a
+5002 01C 	add 	j
+401E 01D	store 	doit	plant the instruction into the program
+0000 01E doit 	dw 	0
+4007 01F 	store 	curr
+C026 020
+0000 021
+0000 022
+0000 023
+0000 024
+0000 025
+3009 026	load	ldit	load a[j-1]
+5003 027 	add 	a
+5002 028 	add 	j
+6006 029 	sub 	1
+402B 02A 	store 	doit
+0000 02B doit 	dw 	0
+4008 02C 	store 	prev
+6007 02D 	sub 	curr
+E043 02E 		jumpl 	go to increment j
+D043 02F 		jumpe 	go to increment j
+300A 030 	load 	sdit a[j] = prev
+5003 031 	add 	a
+5002 032 	add 	j
+4035 033 	store 	swint = swapint
+3008 034 	load 	prev
+0000 035 swint 	dw 	0
+300A 036 	load 	sdit a[j-1] = curr
+5003 037 	add 	a
+5002 038 	add 	j
+6006 039 	sub 	1
+403C 03A 	store 	swint2 = swapint2
+3007 03B 	load 	prev
+0000 03C swint2 dw 	0
+C043 03D
+0000 03E
+0000 03F
+0000 040
+0000 041
+0000 042
+3002 043	load	j	j--
+6006 044 	sub	1
+4002 045 	store	j
+C016 046 	jump	loop2
+3001 047 	load 	i	i++
+5006 048 	add	1
+4001 049 	store 	i
+C00F 04A 	jump 	loop
+0000 04B 	halt
+FFFB 04C	a0	dw	-5	a[0] = -5
+FFFD 04D	a1	dw	-3	a[1] = -3
+0011 04E 	a2 	dw 	17 	a[2] = 17
+FFFC 04F 	a3	dw	-4 	a[3] = -4
+0001 050 	a4 	dw 	1 	a[4] = 1

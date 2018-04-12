@@ -1,0 +1,25 @@
+C007 000	jmp 	start 	skip around the variables
+0000 001	i	0
+0018 002 	dw 	0	line (to print until the halt)	
+0001 003 one 	dw 	1
+3000 004 	dw		load instruction
+0000 005		
+0000 006
+3002 007 loop	load 	line
+6001 008 	sub 	i
+E018 009 	jumpl 	exit
+3001 00A 	load 	i
+6003 00B	sub	one
+D013 00C		jmpe
+C00F 00D
+0000 00E
+3004 00F	load		call instruction 	
+5001 010	add	i
+4012 011	store	doit	plant in the program
+0000 012
+1800 013 	printH
+3001 014 	load	i
+5003 015 	add	one	i++
+4001 016	store	i
+C007 017	jmp	loop
+0000 018 	halt

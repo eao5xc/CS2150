@@ -1,0 +1,39 @@
+C00A 000	jmp 	start 	skip around the variables
+0000 001 i 	dw 	0 	int i
+0000 002 max 	dw 	0 	int max
+0021 003 a 	dw 	0 	int a[]
+0005 004 size 	dw 	5	size = 5
+0000 005 zero 	dw 	0
+0001 006 one 	dw 	1
+3000 007 ldit 	dw 	3000
+0000 008 curr 	dw 		
+0000 009
+3005 00A 	load 	zero 	i = 0
+4001 00B 	store 	i
+3004 00C loop	load 	size
+6001 00D 	sub 	i
+E01F 00E 	jumpl 	exit
+D01F 00F 	jumpe 	exit
+3007 010 	load 	ldit 	form the instruction to load a[i]
+5003 011 	add 	a
+5001 012 	add 	i
+4014 013 	store 	doit 	plant the instruction into the program
+0000 014 doit 	dw 	0
+4008 015 	store 	curr			
+6002 016 	sub 	max
+E01B 017	jumpl
+D01B 018 	jumpe
+3008 019	load	curr
+4002 01A 	store 	max
+3001 01B 	load 	i	i++
+5006 01C 	add 	one
+4001 01D 	store 	i
+C00C 01E 	jump 	loop	go to loop
+3002 01F 	load 	max
+1800 020 	printH
+FFFB 021	a0	dw	-5	a[0] = -5
+FFFD 022	a1	dw	-3	a[1] = -3
+0011 023 	a2 	dw 	17 	a[2] = 17
+FFFC 024 	a3	dw	-4 	a[3] = -4
+0001 025 	a4 	dw 	1 	a[4] = 1
+0000 026 	halt
